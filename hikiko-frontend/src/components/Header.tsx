@@ -1,14 +1,13 @@
-// src/components/Header.tsx
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Button } from '@/components/animate-ui/components/buttons/button';
 
-interface HeaderProps {
-  projectLogo: string
-  iconMag: string
-  iconClose: string
-}
+import projectLogo from '../assets/header-logo.svg'
+import iconMag from '../assets/icons/mag.svg'
+import iconClose from '../assets/icons/close.svg'
+import iconAccaunt from '../assets/icons/account.svg'
 
-export const Header: React.FC<HeaderProps> = ({ projectLogo, iconMag, iconClose }) => {
+export const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false)
 
   return (
@@ -49,11 +48,17 @@ export const Header: React.FC<HeaderProps> = ({ projectLogo, iconMag, iconClose 
             {searchOpen && (
               <motion.div
                 key="search"
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: "100%", opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="absolute left-0 flex items-center bg-zinc-800 rounded-full overflow-hidden"
+                initial={{ skewX: 8, x: 8, opacity: 0 }}
+                animate={{ skewX: 0, x: 0, opacity: 1 }}
+                exit={{ skewX: 8, x: 8, opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="
+                  absolute left-0
+                  w-full
+                  flex items-center
+                  bg-zinc-800
+                  rounded-full
+                "
               >
                 <input
                   type="text"
@@ -74,7 +79,9 @@ export const Header: React.FC<HeaderProps> = ({ projectLogo, iconMag, iconClose 
       </div>
 
       <div>
-        <button className="font-semibold hover:underline">Профиль</button>
+        <Button variant="outline" size="icon">
+          <img src={iconAccaunt} className="h-5 w-5 object-contain" />
+        </Button>
       </div>
     </header>
   )
